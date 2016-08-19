@@ -40,7 +40,10 @@ class WarpigsScraper extends TaplistScraper
             
             $beer = Beer::firstOrNew($beerdata);
 
-            // @todo: Find some way to search Ratebeer for this beer and set it's rating.
+            $rating = $this->ratebeerScraper->getRatingForBeer($beer);
+            if ($rating) {
+                $beer->ratebeeroverallrating = $rating[0];
+            }
 
             $beer->save();
 

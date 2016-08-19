@@ -12,7 +12,7 @@ class TaplistService
      */
     public function updateTaplists()
     {
-        $bars = Bar::all()->each(function($bar) {
+        Bar::all()->each(function($bar) {
             $bar->updateTaplist();
         });
     }

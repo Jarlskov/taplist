@@ -45,7 +45,7 @@ class TaphouseScraper extends TaplistScraper
                 $ratebeerurl = $link->attr('href');
                 $beer->ratebeerurl = $ratebeerurl;
 
-                $rating = $this->ratebeerScraper->getRatingFromUrl($ratebeerurl);
+                $rating = $this->ratebeerScraper->getRatingForBeer($beer);
 
                 if ($rating) {
                     $beer->ratebeeroverallrating = $rating[0];
