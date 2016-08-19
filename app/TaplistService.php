@@ -7,28 +7,13 @@ use Illuminate\Support\Collection;
 
 class TaplistService
 {
-    protected $bars;
-
-    public function __construct()
-    {
-        $this->bars = Bar::all();
-    }
-
+    /**
+     * Update taplists for all bars.
+     */
     public function updateTaplists()
     {
-        $beers = new Collection();
-
-        foreach ($this->bars as $bar) {
-            $beers = $beers->merge($this->update($bar));
-        }
-
-        return $beers;
-    }
-
-    public function update($bar)
-    {
-        $scraper = $bar->getScraper();
-
-        return $scraper->scrape();
+        $bars = Bar::all()->each(function($bar) {
+            $bar->updateTaplist();
+        });
     }
 }

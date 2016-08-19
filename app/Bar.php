@@ -9,6 +9,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bar extends Model
 {
+    /**
+     * Update the Bar's taplist.
+     */
+    public function updateTaplist()
+    {
+        $this->getScraper()->scrape();
+    }
+
+    /**
+     * Get the Bar's scraper.
+     *
+     * @return App\Scraper
+     */
     public function getScraper()
     {
         $class = "App\\Scraper\\{$this->scraperclass}";
