@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<label for="barlist">Select bar: </label>
+<select id="barlist">
+    <option selected value="">All</option>
+    @foreach ($bars as $bar)
+        <option>{{ $bar->name }}</option>
+    @endforeach
+</select>
+
 <table id="listings">
     <thead>
         <tr>
