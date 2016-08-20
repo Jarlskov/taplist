@@ -33,7 +33,7 @@ class FermentorenScraper extends TaplistScraper
             $beer = Beer::firstOrCreate($beerData);
 
             $beer->ratebeerurl = $ratebeerurl;
-            $rating = $this->ratebeerScraper->getRatingFromScraper($ratebeerScraper);
+            $rating = $this->ratebeerScraper->getRatingFromCrawler($ratebeerScraper);
             if ($rating) {
                 $beer->ratebeeroverallrating = $rating[0];
             }
