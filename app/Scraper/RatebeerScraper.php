@@ -5,6 +5,7 @@ namespace App\Scraper;
 use App\Beer;
 
 use Goutte\Client;
+use Symfony\Component\DomCrawler\Crawler;
 
 class RatebeerScraper
 {
@@ -85,9 +86,19 @@ class RatebeerScraper
      */
     protected function getRatingFromUrl($url)
     {
-        $scraper = $this->client->request('GET', $url);
+        $crawler = $this->client->request('GET', $url);
 
-        return $scraper->filter('#_aggregateRating6 span[itemprop=ratingValue]')->each(function ($span) {
+        return $this->getRatingFromCrawler($crawler);
+    }
+
+    /**
+     * Get a beer's overall rating from a crawler containing a Ratebeer beer page.
+     *
+     * @return array<int>
+     */
+    public function getRatingFromScraper(Crawler $crawler)
+    {
+        return $crawler->filter('#_aggregateRating6 span[itemprop=ratingValue]')->each(function ($span) {
             return $span->text();
         });
     }

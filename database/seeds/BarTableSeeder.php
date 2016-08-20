@@ -20,6 +20,10 @@ class BarTableSeeder extends Seeder
                 'name' => 'Warpigs',
                 'scraperclass' => 'WarpigsScraper',
             ),
+            array(
+                'name' => 'Fermentoren',
+                'scraperclass' => 'FermentorenScraper',
+            ),
         );
 
         foreach ($bars as $bar) {
