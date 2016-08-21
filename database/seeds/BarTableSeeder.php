@@ -24,6 +24,10 @@ class BarTableSeeder extends Seeder
                 'name' => 'Fermentoren',
                 'scraperclass' => 'FermentorenScraper',
             ),
+            array(
+                'name' => 'Banksia Food & Beer',
+                'scraperclass' => 'BanksiaScraper',
+            ),
         );
 
         foreach ($bars as $bar) {
