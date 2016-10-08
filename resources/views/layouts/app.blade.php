@@ -60,7 +60,7 @@
         </div>
     </nav>
 
-    <div class="app">
+    <div class="app container">
         @yield('content')
     </div>
 
