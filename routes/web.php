@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'TaplistController@index');
+
+Auth::routes();
