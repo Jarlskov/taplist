@@ -29,7 +29,7 @@ class WarpigsScraper extends TaplistScraper
             $name = $node->filter('td:nth-child(2)')->each(function($td) {
                 return filter_var($td->text(), FILTER_SANITIZE_STRING);
             });
-            if (!$name) {
+            if (!$name || strpos($name[0], ':') === false) {
                 return;
             }
 
