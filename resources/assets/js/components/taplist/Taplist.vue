@@ -17,13 +17,27 @@ export default {
 
     computed: {
         filtered_listings: function() {
+            var listings = this.listings;
+
             if (this.filter !== '') {
                 return this.listings.filter((listing) => {
                     return listing.bar.name === this.filter;
                 });
             }
 
-            return this.listings;
+            return listings.sort((listinga, listingb) => {
+                var bara = listinga.bar.name.toLowerCase();
+                var barb = listingb.bar.name.toLowerCase();
+                var tapa = listinga.tap_name;
+                var tapb = listingb.tap_name;
+
+                if (bara < barb) return -1;
+                if (bara > barb) return 1;
+                if (tapa < tapb) return -1;
+                if (tapa > tapb) return 1;
+
+                return 0;
+            });
         }
     }
 }
@@ -46,7 +60,7 @@ export default {
                     <th>Rating</th>
                 </tr>
             </thead>
-            <tbody> 
+            <tbody>
                 <tr v-for="listing in filtered_listings">
                     <td>{{ listing.bar.name }}</td>
                     <td>{{ listing.tap_name }}</td>

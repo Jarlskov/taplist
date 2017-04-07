@@ -17,6 +17,15 @@ class Listing extends Model
     protected $guarded = ['id'];
 
     /**
+     * Attribute casts.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'tap_name' => 'int',
+    ];
+
+    /**
      * A listing is in a bar.
      */
     public function bar()
