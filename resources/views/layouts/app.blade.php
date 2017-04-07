@@ -4,14 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://maxcdn.bootstrapcdn.com http://cdn.datatables.net">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        window.Laravel = {!! json_encode([
+                    'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
 
     <title>Taplist</title>
 
     <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default">
@@ -60,14 +63,11 @@
         </div>
     </nav>
 
-    <div class="app container">
+    <div id="app" class="app container">
         @yield('content')
     </div>
 
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="/assets/js/scripts.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

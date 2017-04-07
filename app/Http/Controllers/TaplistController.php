@@ -12,7 +12,7 @@ class TaplistController extends Controller
 {
     public function index()
     {
-        $listings = Listing::where('is_available', 1)->get();
+        $listings = Listing::with(['bar', 'beer'])->where('is_available', 1)->get();
         $bars = Bar::all();
 
         return $this->render('taplist.index', [
