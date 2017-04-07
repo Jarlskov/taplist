@@ -1,11 +1,29 @@
 <script>
 export default {
+    data() {
+        return {
+            filter: '',
+        }
+    },
+
     props: {
         bars: {
             required: true
         },
         listings: {
             required: true
+        }
+    },
+
+    computed: {
+        filtered_listings: function() {
+            if (this.filter !== '') {
+                return this.listings.filter((listing) => {
+                    return listing.bar.name === this.filter;
+                });
+            }
+
+            return this.listings;
         }
     }
 }
@@ -14,7 +32,7 @@ export default {
 <template>
     <div>
         <label for="barlist">Select bar: </label>
-        <select id="barlist">
+        <select id="barlist" v-model="filter">
             <option selected value="">All</option>
             <option v-for="bar in bars">{{ bar.name }}</option>
         </select>
@@ -29,7 +47,7 @@ export default {
                 </tr>
             </thead>
             <tbody> 
-                <tr v-for="listing in listings">
+                <tr v-for="listing in filtered_listings">
                     <td>{{ listing.bar.name }}</td>
                     <td>{{ listing.tap_name }}</td>
                     <td>{{ listing.beer.name }}</td>

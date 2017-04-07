@@ -1,7 +1,10 @@
 /vendor
 /node_modules
 /public/storage
+/storate/*.key
 Homestead.yaml
 Homestead.json
 .env
 puphpet
+/public/js
+/public/css
