@@ -37,7 +37,13 @@
             <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    @if (!Auth::guest())
+                        @can('admin')
+                            <li><a href="{{ url('/users') }}"><i class="fa fa-btn fa-users"></i>Users</a></li>
+                            <li><a href="{{ url('/beer') }}"><i class="fa fa-btn fa-beer"></i>Beer</a></li>
+                            <li><a href="{{ url('/brewery') }}"><i class="fa fa-btn fa-institution"></i>Breweries</a></li>
+                        @endif
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -53,7 +59,6 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/config/fitbit"><i class="fa fa-btn fa-heartbeat"></i>Fitbit</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
