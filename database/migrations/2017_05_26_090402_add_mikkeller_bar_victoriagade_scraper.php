@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddMikkellerBarVictoriagadeScraper extends Migration
 {
-    protected $name = 'Mikkeller Bar, Copenhagen';
+    protected $name = 'Mikkeller Bar Victoriagade';
 
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class AddMikkellerBarVictoriagadeScraper extends Migration
 
         $bar = \App\Bar::create([
             'name' => $this->name,
-            'scraperClass' => 'MikkellerBarCopenhagenScraper',
+            'scraperClass' => 'MikkellerBarVictoriagadeScraper',
         ]);
     }
 
