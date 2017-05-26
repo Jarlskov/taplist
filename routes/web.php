@@ -14,3 +14,7 @@
 Route::get('/', 'TaplistController@index');
 
 Auth::routes();
+
+Route::group(['middleware' => 'can:admin'], function() {
+    Route::resource('users', 'UserController');
+});

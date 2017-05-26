@@ -23,4 +23,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Cast properties to specific types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_admin' => 'bool',
+    ];
 }

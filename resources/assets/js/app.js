@@ -13,7 +13,8 @@ require('./bootstrap');
  */
 
 Vue.component('taplist', require('./components/taplist/Taplist.vue'));
+Vue.component('userlist', require('./components/users/Userlist.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });
