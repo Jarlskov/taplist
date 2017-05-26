@@ -14,6 +14,7 @@
 Route::get('/', 'TaplistController@index');
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'can:admin'], function() {
     Route::resource('users', 'UserController');
