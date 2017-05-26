@@ -14,6 +14,7 @@ require('./bootstrap');
 
 Vue.component('taplist', require('./components/taplist/Taplist.vue'));
 Vue.component('userlist', require('./components/users/Userlist.vue'));
+Vue.component('beerlist', require('./components/beer/Beerlist.vue'));
 
 const app = new Vue({
     el: '#app',

@@ -17,5 +17,7 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'can:admin'], function() {
+    Route::resource('beer', 'BeerController');
+    Route::post('/beer/{beer}/reloadratebeer', 'BeerController@reloadRateBeerRating');
     Route::resource('users', 'UserController');
 });

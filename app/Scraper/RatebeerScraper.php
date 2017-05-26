@@ -98,7 +98,7 @@ class RatebeerScraper
      */
     public function getRatingFromCrawler(Crawler $crawler)
     {
-        return $crawler->filter('#_aggregateRating6 span[itemprop=ratingValue]')->each(function ($span) {
+        return $crawler->filter('#_aggregateRating6 div[itemprop=ratingValue]')->each(function ($span) {
             return $span->text();
         });
     }
