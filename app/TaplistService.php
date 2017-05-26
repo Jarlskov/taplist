@@ -12,11 +12,8 @@ class TaplistService
      */
     public function updateTaplists()
     {
-        Bar::where('name', 'Haven Bar')->first()->updateTaplist();
-        /*
         Bar::all()->each(function($bar) {
             $bar->updateTaplist();
         });
-         */
     }
 }
