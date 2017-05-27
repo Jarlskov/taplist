@@ -57,7 +57,8 @@ export default {
                     <th>Tap</th>
                     <th>Name</th>
                     <th>Brewery</th>
-                    <th>Rating</th>
+                    <th>Untappd Rating</th>
+                    <th>Ratebeer Rating</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,6 +67,8 @@ export default {
                     <td>{{ listing.tap_name }}</td>
                     <td>{{ listing.beer.name }}</td>
                     <td>{{ listing.beer.brewery }}</td>
+                    <td v-if="listing.beer.untappd_rating">{{ listing.beer.untappd_rating }}</td>
+                    <td v-else></td>
                     <td>{{ listing.beer.ratebeeroverallrating }}</td>
                 </tr>
             </tbody>

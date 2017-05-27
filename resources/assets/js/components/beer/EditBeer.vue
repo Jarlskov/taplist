@@ -6,6 +6,7 @@ export default {
     data() {
         return {
             beer: {},
+            untappd_results: [],
         }
     },
 
@@ -25,6 +26,26 @@ export default {
                     this.$root.$emit('beerUpdated', this.beer);
                     toastr.success('Rating updated');
                 });
+        },
+
+        reloadUntappdRating() {
+            axios.post('/beer/' + this.beer.id + '/reloaduntappd')
+                .then(({ data }) => {
+                    this.beer.untappd_rating = data.rating;
+                    this.$root.$emit('beerUpdated', this.beer);
+                    toastr.success('Rating updated');
+                });
+        },
+
+        searchOnUntappd() {
+            axios.get('/beer/' + this.beer.id + '/untappdsearch')
+                .then(({ data }) => {
+                    this.untappd_results = data;
+                });
+        },
+
+        selectUntappdId(id) {
+            this.beer.untappd_id = id;
         },
 
         submitForm() {
@@ -69,6 +90,22 @@ export default {
                             <div v-if="beer.ratebeeroverallrating">{{ beer.ratebeeroverallrating }}</div>
                             <div v-else>Rating missing</div>
                             <button type="button" class="btn btn-default" @click.prevent="reloadRatebeerRating">Reload rating</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="untappd_id">Untappd ID</label>
+                            <input type="text" id="untappd_id" name="untappd_id" v-model="beer.untappd_id" class="form-control">
+                            <ul>
+                                <li v-for="result in untappd_results"><a href="#" @click.prevent="selectUntappdId(result.beer.bid)">{{ result.brewery.brewery_name }} - {{ result.beer.beer_name }}</a></li>
+                            </ul>
+                            <a href="#" @click.prevent="searchOnUntappd">Search</a>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="untappd_rating">Untappd rating</label>
+                            <div v-if="beer.untappd_rating">{{ beer.untappd_rating }}</div>
+                            <div v-else>Rating missing</div>
+                            <button type="button" class="btn btn-default" @click.prevent="reloadUntappdRating">Reload rating</button>
                         </div>
                     </form>
                 </div>

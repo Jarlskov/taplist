@@ -26,6 +26,7 @@ class BeerRequest extends FormRequest
         return [
             'name' => 'required',
             'brewery' => 'required',
+            'untappd_id' => 'int',
         ];
     }
 }

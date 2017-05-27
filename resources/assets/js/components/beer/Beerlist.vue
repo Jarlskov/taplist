@@ -44,7 +44,7 @@ export default {
                 <tr>
                     <th>Beer</th>
                     <th>Brewery</th>
-                    <th>Untappd link</th>
+                    <th>Untappd rating</th>
                     <th>RateBeer link</th>
                 </tr>
             </thead>
@@ -52,7 +52,7 @@ export default {
                 <tr v-for="beer in beer">
                     <td><a href="#" @click.prevent="beerClicked(beer)">{{ beer.name }}</a></td>
                     <td><a href="#" @click.prevent="beerClicked(beer)">{{ beer.brewery }}</a></td>
-                    <td>{{ beer.untappd_link }}</td>
+                    <td>{{ beer.untappd_rating }}</td>
                     <td v-if="beer.ratebeerurl">
                         <a :href="beer.ratebeerurl">
                             <span v-if="beer.ratebeeroverallrating">{{ beer.ratebeeroverallrating }}</span>
@@ -66,7 +66,7 @@ export default {
                 <tr>
                     <th>Beer</th>
                     <th>Brewery</th>
-                    <th>Untappd link</th>
+                    <th>Untappd rating</th>
                     <th>RateBeer link</th>
                 </tr>
             </tfoot>
