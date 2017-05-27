@@ -11,9 +11,13 @@ class BeerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('beer.index', ['beer' => Beer::all()->keyBy('id')]);
+        if ($request->wantsJson()) {
+            return ['beer' => Beer::all()->keyBy('id')];
+        }
+
+        return view('beer.index');
     }
 
     /**

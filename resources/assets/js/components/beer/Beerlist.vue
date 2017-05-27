@@ -1,21 +1,18 @@
 <script>
+import axios from 'axios';
 import EditBeer from './EditBeer';
 import Vue from 'vue';
 
 export default {
     data() {
         return {
-            beer: this.initial_beer,
-        }
-    },
-
-    props: {
-        initial_beer: {
-            required: true,
+            beer: {},
         }
     },
 
     mounted() {
+        this.loadBeer();
+
         this.$root.$on('beerUpdated', (beer) => {
             Vue.set(this.beer, beer.id, beer);
         });
@@ -24,6 +21,13 @@ export default {
     methods: {
         beerClicked(beer) {
             this.$root.$emit('editBeer', beer);
+        },
+
+        loadBeer() {
+            axios.get('/beer')
+                .then(({ data }) => {
+                    this.beer = data.beer;
+                });
         }
     },
 
