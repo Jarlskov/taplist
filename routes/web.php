@@ -18,6 +18,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'can:admin'], function() {
     Route::resource('beer', 'BeerController');
-    Route::post('/beer/{beer}/reloadratebeer', 'BeerController@reloadRateBeerRating');
+    Route::post('/beer/{beer}/reloadratebeer', 'BeerController@reloadRatebeerRating');
+    Route::post('/beer/{beer}/reloaduntappd', 'BeerController@reloadUntappdRating');
+    Route::get('/beer/{beer}/untappdsearch', 'BeerController@getUntappdMatches');
     Route::resource('users', 'UserController');
 });
