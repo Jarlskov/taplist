@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import toastr from 'toastr';
 
 export default {
     data() {
@@ -22,6 +23,16 @@ export default {
                 .then(({ data }) => {
                     this.beer.ratebeeroverallrating = data.rating;
                     this.$root.$emit('beerUpdated', this.beer);
+                    toastr.success('Rating updated');
+                });
+        },
+
+        submitForm() {
+            axios.put('/beer/' + this.beer.id, this.beer)
+                .then(({ data }) => {
+                    this.beer = data.beer;
+                    this.$root.$emit('beerUpdated', this.beer);
+                    toastr.success('Beer updated');
                 });
         }
     }
@@ -45,7 +56,7 @@ export default {
 
                         <div class="form-group">
                             <label for="brewery">Brewery</label>
-                            <input type="text" id="brewery" name="name" v-model="beer.brewery" class="form-control">
+                            <input type="text" id="brewery" name="brewery" v-model="beer.brewery" class="form-control">
                         </div>
 
                         <div class="form-group">

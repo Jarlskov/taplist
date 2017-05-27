@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Beer;
+use App\Http\Requests\BeerRequest;
 use App\Scraper\RatebeerScraper;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,12 @@ class BeerController extends Controller
      */
     public function update(BeerRequest $request, Beer $beer)
     {
+        $beer->name = $request->get('name');
+        $beer->brewery = $request->get('brewery');
+        $beer->ratebeerurl = $request->get('ratebeerurl');
+        $beer->save();
+
+        return ['beer' => $beer];
     }
 
     /**
