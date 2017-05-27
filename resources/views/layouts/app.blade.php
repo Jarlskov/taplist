@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/libraries.css') }}" rel="stylesheet">
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default">
